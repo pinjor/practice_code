@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class home extends StatelessWidget {
@@ -12,9 +13,27 @@ class home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Text('Drawer'),
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Home'),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+            ),
+            ListTile(
+              leading: Icon(Icons.edit),
+              title: Text('Edit'),
+            ),
+          ],
         ),
       ),
       appBar: AppBar(
