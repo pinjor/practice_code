@@ -9,47 +9,61 @@ class home extends StatelessWidget {
         .showSnackBar(SnackBar(content: Text(message)));
   }
 
+  alertbox(context) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Expanded(
+          child: AlertDialog(
+            title: Text('alert dialog'),
+            titlePadding: EdgeInsets.all(20.0),
+            content: Text('Do you want to delete'),
+            contentPadding: EdgeInsets.all(20.0),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  snackbar(context, 'deletion done');
+                  Navigator.of(context).pop();
+                },
+                child: Text('yes'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('No'),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              child: UserAccountsDrawerHeader(
-                accountName: Text('masfak'),
-                accountEmail: Text('masfak@gmail.com'),
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Profile'),
-            ),
-            ListTile(
-              leading: Icon(Icons.edit),
-              title: Text('Edit'),
-            ),
-          ],
+      //backgroundColor: Colors.grey,
+      appBar: AppBar(
+        title: Text('practice one'),
+        backgroundColor: Colors.tealAccent,
+        actions: [
+          IconButton(
+            onPressed: () {
+              snackbar(context, 'addd icon');
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
+      ),
+      body: ElevatedButton(
+        onPressed: () {
+          alertbox(context);
+        },
+        child: Center(
+          child: Text('click me'),
         ),
       ),
-      appBar: AppBar(
-          title: Text('practice one'),
-          backgroundColor: Colors.tealAccent,
-          actions: [
-            IconButton(
-              onPressed: () {
-                snackbar(context, 'addd icon');
-              },
-              icon: Icon(Icons.add),
-            ),
-          ]),
     );
   }
 }
