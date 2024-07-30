@@ -45,7 +45,7 @@ class home extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                snackbar(context, 'add icon');
+                snackbar(context, 'addd icon');
               },
               icon: Icon(Icons.add),
             ),
