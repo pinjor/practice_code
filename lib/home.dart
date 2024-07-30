@@ -1,67 +1,62 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class home extends StatelessWidget {
-  const home({super.key});
+  home({super.key});
 
-  snackbar(BuildContext context, message) {
-    return ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  alertbox(context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Expanded(
-          child: AlertDialog(
-            title: Text('alert dialog'),
-            titlePadding: EdgeInsets.all(20.0),
-            content: Text('Do you want to delete'),
-            contentPadding: EdgeInsets.all(20.0),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  snackbar(context, 'deletion done');
-                  Navigator.of(context).pop();
-                },
-                child: Text('yes'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('No'),
-              )
-            ],
-          ),
-        );
-      },
-    );
-  }
+  ButtonStyle buttonStyle = ElevatedButton.styleFrom(
+    minimumSize: Size(double.infinity, 60),
+    backgroundColor: Colors.blueGrey,
+    //textStyle: TextStyle(color: Colors.white),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       //backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text('practice one'),
+        title: Text('Text Field'),
         backgroundColor: Colors.tealAccent,
-        actions: [
-          IconButton(
-            onPressed: () {
-              snackbar(context, 'addd icon');
-            },
-            icon: Icon(Icons.add),
-          ),
-        ],
       ),
-      body: ElevatedButton(
-        onPressed: () {
-          alertbox(context);
-        },
-        child: Center(
-          child: Text('click me'),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                label: Text('First Name'),
+                border: OutlineInputBorder(),
+                hintText: 'Enter First Name',
+              ),
+            ),
+            SizedBox(height: 20.0),
+            TextField(
+              decoration: InputDecoration(
+                label: Text('Last Name'),
+                border: OutlineInputBorder(),
+                hintText: 'Enter Last Name',
+              ),
+            ),
+            SizedBox(height: 20.0),
+            TextField(
+              decoration: InputDecoration(
+                label: Text('Email Address'),
+                border: OutlineInputBorder(),
+                hintText: 'Enter Email Address',
+              ),
+            ),
+            SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                'Submit',
+              ),
+              style: buttonStyle,
+            ),
+          ],
         ),
       ),
     );
