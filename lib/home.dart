@@ -1,62 +1,72 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class home extends StatelessWidget {
-  home({super.key});
+class Home extends StatelessWidget {
+  Home({super.key});
 
-  ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-    minimumSize: Size(double.infinity, 60),
-    backgroundColor: Colors.blueGrey,
+  snackbar(BuildContext context, message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+  final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
+    minimumSize: const Size(10.0, 30.0),
+    backgroundColor: Colors.green,
     //textStyle: TextStyle(color: Colors.white),
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: Text('Text Field'),
-        backgroundColor: Colors.tealAccent,
+        title: const Text(
+          'Greeting App',
+          style: TextStyle(color: Colors.black87, fontSize: 19.0),
+        ),
+        backgroundColor: Colors.white24,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                label: Text('First Name'),
-                border: OutlineInputBorder(),
-                hintText: 'Enter First Name',
+        padding: const EdgeInsets.symmetric(vertical: 200.0),
+        child: Center(
+          child: Column(
+            children: [
+              const Text(
+                'Hello, World!',
+                style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0),
               ),
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              decoration: InputDecoration(
-                label: Text('Last Name'),
-                border: OutlineInputBorder(),
-                hintText: 'Enter Last Name',
+              const SizedBox(
+                height: 20.0,
               ),
-            ),
-            SizedBox(height: 20.0),
-            TextField(
-              decoration: InputDecoration(
-                label: Text('Email Address'),
-                border: OutlineInputBorder(),
-                hintText: 'Enter Email Address',
+              const Text(
+                'Welcome to Flutter!',
+                style: TextStyle(
+                    color: Colors.black45,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17.0),
               ),
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'Submit',
+              const SizedBox(
+                height: 15.0,
               ),
-              style: buttonStyle,
-            ),
-          ],
+              Image.asset('assets/download.png'),
+              const SizedBox(
+                height: 15.0,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  snackbar(context, 'Button Pressed!');
+                },
+                style: buttonStyle,
+                child: const Text(
+                  'Press Me',
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
