@@ -11,64 +11,54 @@ class Home extends StatelessWidget {
     );
   }
 
-  final ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-    minimumSize: const Size(10.0, 30.0),
-    backgroundColor: Colors.green,
-    //textStyle: TextStyle(color: Colors.white),
-  );
+  List mylist = [
+    {
+      "img":
+          "https://upload.wikimedia.org/wikipedia/commons/c/c5/JPEG_example_down.jpg",
+      "title": "1"
+    },
+    {
+      "img":
+          "https://upload.wikimedia.org/wikipedia/commons/c/c5/JPEG_example_down.jpg",
+      "title": "1"
+    },
+    {
+      "img":
+          "https://upload.wikimedia.org/wikipedia/commons/c/c5/JPEG_example_down.jpg",
+      "title": "1"
+    },
+    {
+      "img":
+          "https://upload.wikimedia.org/wikipedia/commons/c/c5/JPEG_example_down.jpg",
+      "title": "1"
+    }
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Greeting App',
-          style: TextStyle(color: Colors.black87, fontSize: 19.0),
-        ),
-        backgroundColor: Colors.white24,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 200.0),
-        child: Center(
-          child: Column(
-            children: [
-              const Text(
-                'Hello, World!',
-                style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              const Text(
-                'Welcome to Flutter!',
-                style: TextStyle(
-                    color: Colors.black45,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17.0),
-              ),
-              const SizedBox(
-                height: 15.0,
-              ),
-              Image.asset('assets/download.png'),
-              const SizedBox(
-                height: 15.0,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  snackbar(context, 'Button Pressed!');
-                },
-                style: buttonStyle,
-                child: const Text(
-                  'Press Me',
-                ),
-              ),
-            ],
+        appBar: AppBar(
+          title: const Text(
+            'Greeting App',
+            style: TextStyle(color: Colors.black87, fontSize: 19.0),
           ),
+          backgroundColor: Colors.white24,
         ),
-      ),
-    );
+        body: ListView.builder(
+            itemCount: mylist.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  snackbar(context, mylist[index]['title']);
+                },
+                child: Container(
+                  margin: EdgeInsets.all(5.0),
+                  child: Image.network(
+                    mylist[index]['img'],
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              );
+            }));
   }
 }
