@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:practice_one/presentation/screens/home_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(shirtcart());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class shirtcart extends StatelessWidget {
+  const shirtcart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: home_page(),
     );
   }
 }
