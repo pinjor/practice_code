@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:task_manager/ui/screens/onboarding/add_new_task_screen.dart';
 import 'package:task_manager/ui/screens/onboarding/logIn.dart';
 import 'package:task_manager/ui/screens/onboarding/profile_screen.dart';
@@ -41,6 +43,121 @@ InputDecoration AppInputDecoration(label) {
   );
 }
 
+SizedBox ItemSizeBox(child) {
+  return SizedBox(
+    width: double.infinity,
+    child: Container(
+      padding: EdgeInsets.all(10),
+      child: child,
+    ),
+  );
+}
+
+TextStyle Head1Text(textColor) {
+  return TextStyle(
+    color: textColor,
+    fontSize: 28,
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w700,
+  );
+}
+
+TextStyle Head6Text(textColor) {
+  return TextStyle(
+      color: textColor,
+      fontSize: 16,
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400);
+}
+
+TextStyle Head7Text(textColor) {
+  return TextStyle(
+      color: textColor,
+      fontSize: 13,
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w400);
+}
+
+TextStyle Head9Text(textColor) {
+  return TextStyle(
+      color: textColor,
+      fontSize: 9,
+      fontFamily: 'poppins',
+      fontWeight: FontWeight.w500);
+}
+
+DecoratedBox AppDropDownStyle(child) {
+  return DecoratedBox(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.white, width: 1),
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child:
+          Padding(padding: EdgeInsets.only(left: 30, right: 30), child: child));
+}
+
+SvgPicture ScreenBackground(context) {
+  return SvgPicture.asset(
+    'assets/images/screen-back.svg',
+    alignment: Alignment.center,
+    width: MediaQuery.of(context).size.width,
+    height: MediaQuery.of(context).size.height,
+    fit: BoxFit.cover,
+  );
+}
+
+ButtonStyle AppButtonStyle() {
+  return ElevatedButton.styleFrom(
+      elevation: 1,
+      padding: EdgeInsets.zero,
+      backgroundColor: Colors.transparent,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)));
+}
+
+ButtonStyle AppStatusButtonStyle(btnColor) {
+  return ElevatedButton.styleFrom(
+    elevation: 1,
+    padding: EdgeInsets.zero,
+    backgroundColor: btnColor,
+  );
+}
+
+TextStyle ButtonTextStyle() {
+  return TextStyle(
+      fontSize: 14, fontFamily: 'poppins', fontWeight: FontWeight.w400);
+}
+
+Ink SuccessButtonChild(String ButtonText) {
+  return Ink(
+    decoration: BoxDecoration(
+        color: Colors.green, borderRadius: BorderRadius.circular(6)),
+    child: Container(
+      height: 45,
+      alignment: Alignment.center,
+      child: Text(
+        ButtonText,
+        style: ButtonTextStyle(),
+      ),
+    ),
+  );
+}
+
+Container StatusChild(statusText, statusColor) {
+  return Container(
+    alignment: Alignment.center,
+    child: Text(statusText,
+        style: TextStyle(
+            color: Colors.white, fontSize: 10, fontWeight: FontWeight.w400)),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: statusColor,
+    ),
+    height: 20,
+    width: 60,
+  );
+}
+
 Padding HeadText(String a) {
   return Padding(
     padding: const EdgeInsets.fromLTRB(30, 0, 0, 5),
@@ -56,7 +173,8 @@ Padding HeadText(String a) {
 //   return Tm_Appbar();
 // }
 
-SizedBox Elevated_green_button(BuildContext context, String text, root) {
+SizedBox Elevated_green_button(
+    BuildContext context, String text, Function function) {
   return SizedBox(
     width: double.infinity,
     child: Padding(
@@ -66,10 +184,12 @@ SizedBox Elevated_green_button(BuildContext context, String text, root) {
           backgroundColor: Colors.green,
         ),
         onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => root),
-          );
+          // Navigator.pushReplacement(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => root),
+          // );
+          function();
+          //FormOnSubmit();
         },
         child: Text(
           text,
@@ -111,6 +231,44 @@ FloatingActionButton buildFloatingActionButton(BuildContext context) {
       );
     },
     child: Icon(Icons.add),
+  );
+}
+
+void SuccessToast(msg) {
+  Fluttertoast.showToast(
+      msg: msg,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      toastLength: Toast.LENGTH_SHORT,
+      backgroundColor: Colors.green,
+      textColor: Colors.white,
+      fontSize: 16.0);
+}
+
+void ErrorToast(msg) {
+  Fluttertoast.showToast(
+      msg: msg,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      toastLength: Toast.LENGTH_SHORT,
+      backgroundColor: Colors.red,
+      textColor: Colors.white,
+      fontSize: 16.0);
+}
+
+PinTheme AppOTPStyle() {
+  return PinTheme(
+    inactiveColor: Colors.lightGreen,
+    inactiveFillColor: Colors.white,
+    selectedColor: Colors.green,
+    activeColor: Colors.green,
+    selectedFillColor: Colors.green,
+    shape: PinCodeFieldShape.box,
+    borderRadius: BorderRadius.circular(5),
+    fieldHeight: 50,
+    borderWidth: 0.5,
+    fieldWidth: 45,
+    activeFillColor: Colors.white,
   );
 }
 

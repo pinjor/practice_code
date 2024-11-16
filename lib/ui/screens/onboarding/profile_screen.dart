@@ -62,7 +62,7 @@ class _profile_screenState extends State<profile_screen> {
                   SizedBox(
                     height: 10.0,
                   ),
-                  Elevated_green_button(context, 'Update', new_task_screen()),
+                  //Elevated_green_button(context, 'Update', new_task_screen()),
                 ],
               ),
             ),
